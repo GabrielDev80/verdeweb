@@ -1,0 +1,25 @@
+@use "./variables" as *;
+.faqcard-wrapper {
+  display: flex;
+  flex-direction: column;
+  // flex: 1;
+  gap: 10px;
+  padding: 10px;
+  & .faqcard {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    border-radius: 15px;
+    box-shadow: $shadow-xlg;
+    margin: 0 auto;
+    padding: 10px;
+    width: 80%;
+
+    & .ask {
+      padding-left: 10px;
+    }
+    & .answer {
+      padding-left: 30px;
+    }
+  }
+}

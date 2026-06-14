@@ -1,0 +1,33 @@
+@use "./variables" as *;
+.card-group {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  gap: 10px;
+  border-radius: 15px;
+  box-shadow: $shadow-xlg;
+  padding: 10px;
+  width: 100%;
+
+  & .card-image-container {
+    position: relative;
+    width: 128px;
+    height: 128px;
+  }
+  & .card-text-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    & .title {
+      text-align: center;
+    }
+    & .text {
+      text-align: start;
+    }
+  }
+}

@@ -1,0 +1,50 @@
+@use "./variables" as *;
+@use "./fonts";
+
+.main-view-container {
+  position: relative;
+  min-height: 100vh;
+  height: fit-content;
+  background-image: url(/bg-verduras.webp);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  & .text-wrapper {
+    position: relative;
+    // padding: 0 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    & .tw-container {
+      position: relative;
+      width: 100%;
+      height: fit-content;
+      & .main-view-title {
+        font-size: 16px;
+        margin-bottom: 1rem;
+      }
+      & .main-view-slogan {
+        font-size: 48px;
+        line-height: 50px;
+      }
+      & .main-view-paragraph {
+        font-size: 20px;
+      }
+    }
+  }
+}
+
+.purchase-process-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  & .purchase-cards-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    width: 80%;
+  }
+}

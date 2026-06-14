@@ -1,0 +1,41 @@
+@use "./variables" as *;
+
+.mainLayoutContainer {
+  background-color: $bg-soft;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  height: auto;
+  overflow: auto;
+  @include mobile {
+    display: flex;
+    flex-direction: column;
+  }
+
+  & .headerContainer {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    height: fit-content;
+    width: 100%;
+  }
+
+  & .mainContainer {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow-y: auto;
+    flex: 1;
+  }
+
+  & .footerContainer {
+    position: relative;
+    min-height: 10vh;
+    height: fit-content;
+    bottom: 0;
+    background-color: $bg-dark;
+    color: $text-on-dark;
+  }
+}

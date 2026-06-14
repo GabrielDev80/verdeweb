@@ -1,0 +1,87 @@
+@use "./variables" as *;
+
+// Buttons
+.btn {
+  border: none;
+  border-radius: 5px;
+  color: #f8f9fa;
+  cursor: pointer;
+  display: inline-block;
+  font-family: inherit;
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-top: 1.5rem;
+  padding: 0.75rem 1.5rem;
+  text-decoration: none;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  @include mobile {
+    font-size: 1rem;
+    padding: 0.6rem 1rem;
+    margin-top: 1rem;
+  }
+  @include tablet {
+    font-size: 1.1rem;
+  }
+  &.btn-start {
+    align-self: flex-start;
+  }
+  &.btn-center {
+    align-self: center;
+  }
+  &.btn-end {
+    align-self: flex-end;
+  }
+
+  &.btn-pill {
+    border-radius: 15px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.22);
+    font-size: 15px;
+    padding: 8px 24px;
+  }
+  &.btn-disabled {
+    background-color: #6c757d;
+  }
+  &.btn-light {
+    background-color: #f8f9fa;
+    color: #212529;
+    &:hover {
+      background-color: #c0c0c0;
+    }
+  }
+  &.btn-default {
+    background-color: #0d6efd;
+    &:hover {
+      background-color: blue;
+    }
+  }
+  &.btn-info {
+    background-color: #0dcaf0;
+    color: #000;
+    &:hover {
+      background-color: #007bff;
+    }
+  }
+  &.btn-success {
+    background-color: #228754;
+    &:hover {
+      background-color: #228b22;
+    }
+  }
+  &.btn-warning {
+    background-color: #ffc107;
+    color: #000;
+    &:hover {
+      background-color: #ffff00;
+      // background-color: #ff9800;
+    }
+  }
+  &.btn-danger {
+    background-color: #dc3545;
+  }
+  &.btn-dark {
+    background-color: #212529;
+  }
+}

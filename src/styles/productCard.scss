@@ -1,0 +1,30 @@
+@use "./variables" as *;
+@use "./custom.scss";
+.item {
+  height: 325px;
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 0 10px 0 rgb(0 0 0 / 30%);
+  cursor: pointer;
+  color: #000;
+  margin: 25px 10px 20px 10px;
+  padding: 10px;
+  text-align: center;
+  width: 216px;
+
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+  &:hover {
+    background-color: $success-hover;
+    box-shadow: 0 0 20px 0 rgb(0 0 0 / 80%);
+  }
+  & .image-wrapper {
+    width: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}

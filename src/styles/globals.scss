@@ -1,0 +1,90 @@
+@use "./variables" as *; // Reemplaza a @import(deprecado)
+@font-face {
+  font-family: "Nunito";
+  font-weight: 400;
+  font-size: normal;
+  src: url(../assets/fonts/Nunito/static/Nunito-Regular.ttf);
+}
+/* 1. Eliminar los márgenes y redefinir el box-sizing */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+#root,
+body {
+  height: 100%;
+  @include mobile {
+    overflow: auto;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+#root {
+  position: relative;
+  width: auto;
+}
+
+// 2. Mejorar la legibilidad del cuerpo y estandarizar la tipografía
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+
+  // font-family: "Inter", monospace;
+  font-family: "Nunito", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  margin: 0;
+  background: #f3f4f7;
+  color: #222;
+}
+
+/* 3. Evitar problemas con imágenes, vídeos y fuentes */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* 4. Eliminar los saltos de línea forzados en párrafos largos */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+/* 5. Eliminar decoradores */
+ul,
+ol,
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+input:focus {
+  border: 1px solid $success-active;
+}

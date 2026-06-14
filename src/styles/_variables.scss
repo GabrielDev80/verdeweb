@@ -1,0 +1,149 @@
+/* ===================================================
+     VARIABLES GLOBALES
+  ==================================================== */
+
+/* ===================================================
+  📱 Breakpoints
+   =================================================== */
+
+$breakpoint-mobile: 480px;
+$breakpoint-tablet: 768px;
+$breakpoint-desktop: 1024px;
+
+/* Mixins */
+@mixin mobile {
+  @media (max-width: #{$breakpoint-tablet - 1px}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: $breakpoint-tablet) and (max-width: #{$breakpoint-desktop - 1px}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: $breakpoint-desktop) {
+    @content;
+  }
+}
+
+/* ===================================================
+  🎨 Colores de Marca (Brand Colors)
+   =================================================== */
+
+$brand-primary: #4c6ef5;
+$brand-primary-light: #87a0ff;
+$brand-primary-dark: #3a53c7;
+
+$brand-secondary: #748ffc;
+$brand-secondary-light: #aabeff;
+$brand-secondary-dark: #5a6fd6;
+
+$brand-accent: #f76707;
+$brand-accent-light: #ffa94d;
+$brand-accent-dark: #d9480f;
+
+/* ===================================================
+  🎨 Paleta Neutra (Neutral Colors)
+   =================================================== */
+
+$neutral-0: #ffffff;
+$neutral-50: #f8f9fc;
+$neutral-100: #f1f3f5;
+$neutral-200: #e9ecef;
+$neutral-300: #dee2e6;
+$neutral-400: #ced4da;
+$neutral-500: #adb5bd;
+$neutral-600: #868e96;
+$neutral-700: #495057;
+$neutral-800: #343a40;
+$neutral-900: #212529;
+
+/* ===================================================
+  ⚠️ Estados (Success, Error, Warning, Info)
+   =================================================== */
+
+/* Base */
+$info: #3bc9db;
+$success: #38d9a9;
+$warning: #fab005;
+$error: #fa5252;
+
+/* Hover */
+$info-hover: #2aa9ba;
+$success-hover: #2ebf94;
+$warning-hover: #e0a100;
+$error-hover: #e03131;
+
+/* Active */
+$info-active: #1f7f8c;
+$success-active: #279e7b;
+$warning-active: #c28a00;
+$error-active: #c92a2a;
+
+/* Focus (para border, shadows, outlines) */
+$info-focus: rgba(59, 201, 219, 0.35);
+$success-focus: rgba(56, 217, 169, 0.35);
+$warning-focus: rgba(250, 176, 5, 0.35);
+$error-focus: rgba(250, 82, 82, 0.35);
+
+/* Outline (suave) */
+$info-outline: rgba(59, 201, 219, 0.18);
+$success-outline: rgba(56, 217, 169, 0.18);
+$warning-outline: rgba(250, 176, 5, 0.22);
+$error-outline: rgba(250, 82, 82, 0.18);
+
+/* ===================================================
+  🖼 Fondos (Backgrounds)
+   =================================================== */
+
+$bg-soft: #f5f7ff;
+$bg-highlight: #eef2ff;
+$bg-accent: #fff4e6;
+$bg-dark: #1b1e29;
+$bg-impact: #00ed64;
+
+/* ===================================================
+  ✍️ Tipografía (Text Colors)
+   =================================================== */
+
+$text-primary: $neutral-900;
+$text-secondary: $neutral-700;
+$text-muted: $neutral-500;
+$text-on-dark: #ffffff;
+
+/* ===================================================
+  🧱 Bordes + Sombras
+   =================================================== */
+
+$border-light: rgba(0, 0, 0, 0.08);
+$border-strong: rgba(0, 0, 0, 0.16);
+
+$shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+$shadow-md: 0 2px 6px rgba(0, 0, 0, 0.08);
+$shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.12);
+$shadow-xlg: 0px 0px 10px rgba(0, 0, 0, 0.3);
+
+/* ===================================================
+  🌅 Gradientes
+   =================================================== */
+
+$gradient-primary: linear-gradient(135deg, #4c6ef5, #748ffc);
+$gradient-accent: linear-gradient(135deg, #ffa94d, #f76707);
+$gradient-success: linear-gradient(135deg, #00ed64, #6e9c00);
+
+/* ===================================================
+  🌙 Modo Oscuro (Dark Mode)
+   =================================================== */
+
+$dark-bg: #1b1e29;
+$dark-surface: #252836;
+$dark-border: rgba(255, 255, 255, 0.08);
+
+$dark-text-primary: #ffffff;
+$dark-text-secondary: #ced4da;
+
+$dark-primary: #748ffc;
+$dark-primary-hover: #5c7cfa;
