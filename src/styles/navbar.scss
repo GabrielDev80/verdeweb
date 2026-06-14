@@ -31,8 +31,19 @@
       font-size: 15px;
       line-height: 18px;
       padding: 10px;
-      & a {
+      & .navbarLink {
         color: $text-on-dark;
+        padding: 0.5rem;
+        transition:
+          color 0.2s ease,
+          border-color 0.2s ease;
+        &:hover {
+          color: $brand-accent-dark;
+        }
+        &.active {
+          color: $brand-accent-dark;
+          border-bottom: 2px solid $brand-accent-dark;
+        }
       }
     }
   }

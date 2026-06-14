@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "../../styles/custom.scss";
 import "../../styles/navbar.scss";
 
@@ -7,35 +7,48 @@ export const Navbar = () => {
     <>
       <nav className="navbar">
         <div className="navbarBrand">
-          <Link to="/">
+          <NavLink to="/">
             <img
               className="brand-image"
               src="/logo.svg"
               alt="Logo de Verde Web"
             />
-          </Link>
+          </NavLink>
         </div>
+        {/* ============================================= */}
         <ul className="navbarList">
           <li className="navbarItem font-primary extra-bold">
-            <Link to="/us">Quienes Somos</Link>
+            <NavLink to="/us" className="navbarLink">
+              Quienes Somos
+            </NavLink>
           </li>
           <li className="navbarItem font-primary extra-bold">
-            <Link to="/products">Productos</Link>
+            <NavLink to="/products" className="navbarLink">
+              Productos
+            </NavLink>
           </li>
           <li className="navbarItem font-primary extra-bold">
-            <Link to="/faqs">Preguntas Frecuentes</Link>
+            <NavLink to="/faqs" className="navbarLink">
+              Preguntas Frecuentes
+            </NavLink>
           </li>
           {/* cta whatsapp */}
           <li className="navbarItem font-primary extra-bold">
-            <Link to="/contact">Contactanos</Link>
+            <NavLink to="/contact" className="navbarLink">
+              Contactanos
+            </NavLink>
           </li>
           {/* formato carrito con numero de productos */}
           <li className="navbarItem font-primary extra-bold ">
-            <Link to="/cart">Carrito</Link>
+            <NavLink to="/cart" className="navbarLink">
+              Carrito
+            </NavLink>
           </li>
           {/* Formato boton-pill */}
           <li className="navbarItem font-primary extra-bold">
-            <Link to="/login">Login</Link>
+            <NavLink to="/login" className="navbarLink">
+              Login
+            </NavLink>
           </li>
         </ul>
       </nav>
