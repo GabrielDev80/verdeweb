@@ -1,13 +1,17 @@
-import "../styles/custom.scss";
-import { useEffect, useState } from "react";
 import ProductList from "../components/products/ProductList.jsx";
+import { useEffect, useState } from "react";
+import { useAuth } from "../hooks/useAuth.js";
 import { getProducts } from "../services/products.services.js";
 import { Helmet } from "react-helmet-async";
+
+import "../styles/custom.scss";
 
 const Products = () => {
   const [productList, setProductList] = useState([]);
   const [loading, setLoading] = useState(true);
+  const auth = useAuth();
 
+  console.log(auth);
   useEffect(() => {
     const fetchProducts = async () => {
       try {
