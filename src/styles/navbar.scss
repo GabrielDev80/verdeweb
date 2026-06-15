@@ -193,6 +193,38 @@
           border-bottom: 2px solid currentColor;
         }
 
+        &.cartLink {
+          position: relative;
+          display: flex;
+          align-items: center;
+          & .cartIcon {
+            width: 32px;
+            height: 32px;
+            color: $text-on-dark;
+          }
+          & .cartBadge {
+            position: absolute;
+            top: -6px;
+            right: -12px;
+
+            min-width: 20px;
+            height: 20px;
+            padding: 5px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            border: 1px solid $brand-accent;
+            border-radius: 50%;
+
+            font-size: 12px;
+            font-weight: 700;
+
+            background: $brand-accent;
+            color: $text-on-dark;
+          }
+        }
+
         &.loginButton {
           padding: 0.6rem 1rem;
           border-radius: 999px;

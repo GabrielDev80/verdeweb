@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
+import { CartIcon } from "../ui/CartIcon.jsx";
 
 import "../../styles/custom.scss";
 import "../../styles/navbar.scss";
@@ -8,6 +9,9 @@ export const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const closeMenu = () => setMenuOpen(false);
+
+  const cartCount = 10;
+  // const cartCount = cartItems.lenght;
 
   return (
     <>
@@ -60,8 +64,18 @@ export const Navbar = () => {
           </li>
           {/* formato carrito con numero de productos */}
           <li className="navbarItem font-primary extra-bold ">
-            <NavLink to="/cart" className="navbarLink" onClick={closeMenu}>
-              Carrito
+            <NavLink
+              to="/cart"
+              className="navbarLink cartLink"
+              onClick={closeMenu}
+            >
+              <CartIcon className="cartIcon" />
+              {/* <img src="/carrito.svg" alt="Carrito" className="cartIcon" /> */}
+              {cartCount > 0 && (
+                <span className="cartBadge">
+                  {cartCount > 99 ? "99+" : cartCount}
+                </span>
+              )}
             </NavLink>
           </li>
           {/* Formato boton-pill */}
