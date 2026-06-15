@@ -7,6 +7,7 @@ import Products from "../pages/Products.jsx";
 import Faqs from "../pages/Faqs.jsx";
 import Us from "../pages/Us.jsx";
 import Contact from "../pages/Contact.jsx";
+import Account from "../pages/Account.jsx";
 
 export const AppRouter = () => {
   return (
@@ -21,6 +22,7 @@ export const AppRouter = () => {
           <Route path="/contact" element={<Contact />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/account" element={<Account />} />
         </Route>
       </Routes>
     </BrowserRouter>
