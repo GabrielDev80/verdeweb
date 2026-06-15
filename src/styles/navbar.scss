@@ -1,54 +1,5 @@
 @use "./variables" as *;
 @use "./fonts";
-/* .navbar {
-  background: $gradient-success;
-  display: flex;
-  flex-direction: row;
-  position: relative;
-  width: 100%;
-  & .navbarBrand {
-    display: flex;
-    min-height: 83px;
-    padding: 10px;
-    width: 20%;
-    justify-content: center;
-    align-items: center;
-    @include tablet {
-    }
-    @include mobile {
-    }
-    & .brand-image {
-      width: 100%;
-    }
-  }
-  & .navbarList {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-evenly;
-    width: 80%;
-    & .navbarItem {
-      font-size: 15px;
-      line-height: 18px;
-      padding: 10px;
-      & .navbarLink {
-        color: $text-on-dark;
-        padding: 0.5rem;
-        transition:
-          color 0.2s ease,
-          border-color 0.2s ease;
-        &:hover {
-          color: $brand-accent-dark;
-        }
-        &.active {
-          color: $brand-accent-dark;
-          border-bottom: 2px solid $brand-accent-dark;
-        }
-      }
-    }
-  }
-}
- */
 
 .navbar {
   background: $gradient-success;
@@ -132,9 +83,6 @@
     list-style: none;
     margin: 0;
     padding: 0;
-    @include horizontal-mobile {
-      gap: 1rem;
-    }
     @include mobile {
       position: absolute;
       top: 100%;
@@ -168,10 +116,6 @@
       margin: 0;
       @include tablet {
         font-size: 10px;
-        padding: 3px;
-      }
-      @include horizontal-mobile {
-        font-size: 11px;
         padding: 3px;
       }
       @include mobile {
