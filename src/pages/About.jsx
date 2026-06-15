@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet-async";
-const Us = () => {
+const About = () => {
   return (
     <>
       <Helmet>
@@ -10,4 +10,4 @@ const Us = () => {
   );
 };
 
-export default Us;
+export default About;

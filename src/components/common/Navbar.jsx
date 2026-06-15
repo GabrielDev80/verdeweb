@@ -7,7 +7,7 @@ import "../../styles/custom.scss";
 import "../../styles/navbar.scss";
 
 export const Navbar = () => {
-  const { user, isAuthenticated } = useAuth();
+  const { isAuthenticated } = useAuth();
   const [menuOpen, setMenuOpen] = useState(false);
   const closeMenu = () => setMenuOpen(false);
 
@@ -43,8 +43,8 @@ export const Navbar = () => {
         {/* ==================== Menú ==================== */}
         <ul className={`navbarList ${menuOpen ? "active" : ""}`}>
           <li className="navbarItem font-primary extra-bold">
-            <NavLink to="/us" className="navbarLink" onClick={closeMenu}>
-              Quienes Somos
+            <NavLink to="/about" className="navbarLink" onClick={closeMenu}>
+              Nosotros
             </NavLink>
           </li>
           <li className="navbarItem font-primary extra-bold">
@@ -63,7 +63,7 @@ export const Navbar = () => {
               Contactanos
             </NavLink>
           </li>
-          {/* formato carrito con numero de productos */}
+          {/* Carrito con numero de productos */}
           <li className="navbarItem font-primary extra-bold ">
             <NavLink
               to="/cart"

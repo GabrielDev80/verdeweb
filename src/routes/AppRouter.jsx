@@ -5,7 +5,7 @@ import Login from "../pages/Login.jsx";
 import Home from "../pages/Home.jsx";
 import Products from "../pages/Products.jsx";
 import Faqs from "../pages/Faqs.jsx";
-import Us from "../pages/Us.jsx";
+import About from "../pages/About.jsx";
 import Contact from "../pages/Contact.jsx";
 import Account from "../pages/Account.jsx";
 
@@ -16,7 +16,7 @@ export const AppRouter = () => {
         {/* Rutas */}
         <Route element={<MainLayout />}>
           <Route path="/" element={<Home />} />
-          <Route path="/us" element={<Us />} />
+          <Route path="/about" element={<About />} />
           <Route path="/faqs" element={<Faqs />} />
           <Route path="/products" element={<Products />} />
           <Route path="/contact" element={<Contact />} />
