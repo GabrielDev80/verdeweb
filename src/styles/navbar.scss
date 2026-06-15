@@ -1,6 +1,6 @@
 @use "./variables" as *;
 @use "./fonts";
-.navbar {
+/* .navbar {
   background: $gradient-success;
   display: flex;
   flex-direction: row;
@@ -43,6 +43,160 @@
         &.active {
           color: $brand-accent-dark;
           border-bottom: 2px solid $brand-accent-dark;
+        }
+      }
+    }
+  }
+}
+ */
+
+.navbar {
+  background: $gradient-success;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 1rem 2rem;
+  position: relative;
+  @include tablet {
+    padding: 0 2rem;
+  }
+  @include mobile {
+    padding: 0 1rem;
+  }
+  & .navbarBrand {
+    min-height: 83px;
+    padding: 10px;
+    width: 20%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @include mobile {
+      width: 75%;
+    }
+    z-index: 1001;
+    & .brand-image {
+      // height: 60px;
+      // width: auto;
+      width: 100%;
+    }
+  }
+
+  & .hamburger {
+    display: none;
+
+    flex-direction: column;
+    justify-content: space-between;
+
+    width: 30px;
+    height: 22px;
+
+    background: none;
+    border: none;
+    cursor: pointer;
+
+    @include mobile {
+      display: flex;
+      z-index: 1001;
+    }
+
+    & span {
+      display: block;
+      width: 100%;
+      height: 3px;
+      background: currentColor;
+      transition: 0.3s;
+    }
+
+    &.open {
+      & span:nth-child(1) {
+        transform: translateY(9px) rotate(45deg);
+      }
+      & span:nth-child(2) {
+        opacity: 0;
+      }
+      & span:nth-child(3) {
+        transform: translateY(-9px) rotate(-45deg);
+      }
+    }
+  }
+
+  & .navbarList {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    @include horizontal-mobile {
+      gap: 1rem;
+    }
+    @include mobile {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
+      background: $gradient-success;
+      padding: 1rem;
+      z-index: 9999;
+
+      opacity: 0;
+      visibility: hidden;
+      transition:
+        opacity 0.3s ease,
+        visibility 0.3s ease;
+
+      &.active {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+
+    & .navbarItem {
+      font-size: 15px;
+      line-height: 18px;
+      padding: 10px;
+      margin: 0;
+      @include tablet {
+        font-size: 10px;
+        padding: 3px;
+      }
+      @include horizontal-mobile {
+        font-size: 11px;
+        padding: 3px;
+      }
+      @include mobile {
+        font-size: 12px;
+        line-height: 0px;
+        padding: 5px;
+      }
+      & .navbarLink {
+        text-decoration: none;
+        color: $text-on-dark;
+
+        transition: 0.2s ease;
+
+        &:hover {
+          color: $brand-accent-dark;
+        }
+
+        &.active {
+          border-bottom: 2px solid currentColor;
+        }
+
+        &.loginButton {
+          padding: 0.6rem 1rem;
+          border-radius: 999px;
+          border: 1px solid currentColor;
         }
       }
     }
