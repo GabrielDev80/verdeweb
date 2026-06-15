@@ -1,3 +1,4 @@
+import { useAuth } from "../../hooks/useAuth.js";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { CartIcon } from "../ui/CartIcon.jsx";
@@ -6,12 +7,12 @@ import "../../styles/custom.scss";
 import "../../styles/navbar.scss";
 
 export const Navbar = () => {
+  const { user, isAuthenticated } = useAuth();
   const [menuOpen, setMenuOpen] = useState(false);
-
   const closeMenu = () => setMenuOpen(false);
 
   const cartCount = 10;
-  // const cartCount = cartItems.lenght;
+  // const cartCount = cartItems.length;
 
   return (
     <>
@@ -70,7 +71,6 @@ export const Navbar = () => {
               onClick={closeMenu}
             >
               <CartIcon className="cartIcon" />
-              {/* <img src="/carrito.svg" alt="Carrito" className="cartIcon" /> */}
               {cartCount > 0 && (
                 <span className="cartBadge">
                   {cartCount > 99 ? "99+" : cartCount}
@@ -80,13 +80,19 @@ export const Navbar = () => {
           </li>
           {/* Formato boton-pill */}
           <li className="navbarItem font-primary extra-bold">
-            <NavLink
-              to="/login"
-              className="navbarLink loginButton"
-              onClick={closeMenu}
-            >
-              Login
-            </NavLink>
+            {isAuthenticated ? (
+              <NavLink to="/account" className="navbarLink" onClick={closeMenu}>
+                <span>👤 Mi cuenta</span>
+              </NavLink>
+            ) : (
+              <NavLink
+                to="/login"
+                className="navbarLink loginButton"
+                onClick={closeMenu}
+              >
+                Login
+              </NavLink>
+            )}
           </li>
         </ul>
       </nav>
