@@ -41,8 +41,11 @@
     font-size: 15px;
     padding: 8px 24px;
   }
-  &.btn-disabled {
+  &.btn:disabled {
+    pointer-events: none;
     background-color: #6c757d;
+    cursor: not-allowed;
+    opacity: 0.65;
   }
   &.btn-light {
     background-color: #f8f9fa;
