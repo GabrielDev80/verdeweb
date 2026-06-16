@@ -33,6 +33,7 @@ const LoginForm = ({ onSubmit }) => {
             type="email"
             name="email"
             id="email"
+            autoComplete="on"
             value={form.email}
             onChange={handleChange}
             required
@@ -47,6 +48,7 @@ const LoginForm = ({ onSubmit }) => {
             type="password"
             name="password"
             id="password"
+            autoComplete="on"
             value={form.password}
             onChange={handleChange}
             required
@@ -54,7 +56,7 @@ const LoginForm = ({ onSubmit }) => {
         </div>
         <Button
           className="btn btn-success btn-pill"
-          onClick={handleSubmit}
+          type="Submit"
           text="Login"
         />
       </form>
