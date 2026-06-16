@@ -1,8 +1,10 @@
 import { Outlet } from "react-router-dom";
-import { Navbar } from "../components/common/Navbar.jsx";
-import { Footer } from "../components/common/Footer.jsx";
+import { Navbar } from "../../components/common/Navbar.jsx";
+import { Footer } from "../../components/common/Footer.jsx";
+import { Banner } from "../../components/common/Banner.jsx";
+
 import "../styles/mainLayout.scss";
-import { Banner } from "../components/common/Banner.jsx";
+
 const MainLayout = () => {
   return (
     <>
