@@ -3,7 +3,7 @@ import { Button } from "../ui/Button.jsx";
 const ProductCard = ({ product }) => {
   const defaultResponse = () => console.warn("Falta crear la función onClick");
 
-  console.log("Product: ", product);
+  // console.log("Product: ", product);
   return (
     <div className="item">
       <div className="image-wrapper">
