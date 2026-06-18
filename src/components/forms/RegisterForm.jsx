@@ -22,6 +22,13 @@ export const RegisterForm = ({ onSubmit }) => {
     confirmPassword: false,
   });
 
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  const handleShowPassword = () => setShowPassword((show) => !show);
+  const handleShowConfirmPassword = () =>
+    setShowConfirmPassword((show) => !show);
+
   const handleChange = (e) => {
     setForm({
       ...form,
@@ -79,7 +86,7 @@ export const RegisterForm = ({ onSubmit }) => {
             type="text"
             name="username"
             id="username"
-            value={form.username}
+            value={form.username.trim()}
             onChange={handleChange}
             onBlur={handleBlur}
             autoComplete="on"
@@ -89,13 +96,15 @@ export const RegisterForm = ({ onSubmit }) => {
           />
         </div>
         <div className="input-group">
-          <label htmlFor="email">Email</label>
+          <label className="label" htmlFor="email">
+            Email
+          </label>
           <input
             className="input"
             type="email"
             name="email"
             id="email"
-            value={form.email}
+            value={form.email.trim().toLowerCase()}
             onChange={handleChange}
             onBlur={handleBlur}
             autoComplete="on"
@@ -104,37 +113,56 @@ export const RegisterForm = ({ onSubmit }) => {
           />
         </div>
         <div className="input-group">
-          <label htmlFor="password">Contraseña</label>
-          <input
-            className="input"
-            type="password"
-            name="password"
-            id="password"
-            value={form.password}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            autoComplete="on"
-            minLength={8}
-            required
-            placeholder="ingresa tu contraseña"
-          />
+          <label className="label" htmlFor="password">
+            Contraseña
+          </label>
+          <div className="password-group">
+            <input
+              className="input"
+              type={showPassword ? "text" : "password"}
+              name="password"
+              id="password"
+              value={form.password}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              autoComplete="on"
+              minLength={8}
+              required
+              placeholder="ingresa tu contraseña"
+            />
+            <img
+              className="icon"
+              src={`/icons/forms/${showPassword ? "icons8-eye-50.png" : "icons8-closed-eye-50.png"}`}
+              alt={`ícono de ${showPassword ? "mostrar" : "ocultar"} password`}
+              onClick={handleShowPassword}
+            />
+          </div>
         </div>
         <div className="input-group">
           <label htmlFor="confirmPassword">Contraseña</label>
-          <input
-            className="input"
-            type="password"
-            name="confirmPassword"
-            id="confirmPassword"
-            value={form.confirmPassword}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            autoComplete="on"
-            minLength={8}
-            required
-            placeholder="confirma tu contraseña"
-          />
+          <div className="password-group">
+            <input
+              className="input"
+              type={showConfirmPassword ? "text" : "password"}
+              name="confirmPassword"
+              id="confirmPassword"
+              value={form.confirmPassword}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              autoComplete="on"
+              minLength={8}
+              required
+              placeholder="confirma tu contraseña"
+            />
+            <img
+              className="icon"
+              src={`/icons/forms/${showConfirmPassword ? "icons8-eye-50.png" : "icons8-closed-eye-50.png"}`}
+              alt={`ícono de ${showConfirmPassword ? "mostrar" : "ocultar"} password`}
+              onClick={handleShowConfirmPassword}
+            />
+          </div>
         </div>
+
         {/* Conditionals messages */}
         {touched.email && form.email && !isEmailValid && (
           <div className="email-message">
@@ -170,10 +198,11 @@ export const RegisterForm = ({ onSubmit }) => {
           disabled={!isFormValid}
           text="Registrarse"
         />
-        <p className="info">
-          ¿Ya tienes cuenta? <Link to="/login">Ve a iniciar sesión.</Link>
-        </p>
       </form>
+
+      <p className="info">
+        ¿Ya tienes cuenta? <Link to="/login">Ve a iniciar sesión.</Link>
+      </p>
     </div>
   );
 };

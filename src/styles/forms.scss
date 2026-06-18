@@ -18,8 +18,26 @@
     margin-bottom: 10px;
     & .input {
       border: 1px $success inset;
+      box-sizing: border-box;
       border-radius: 15px;
       padding: 2px 10px;
+    }
+    & .password-group {
+      position: relative;
+      width: 59%;
+      & .input {
+        width: 100%;
+        padding-right: 44px;
+      }
+      & .icon {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 22px;
+        cursor: pointer;
+        user-select: none;
+      }
     }
   }
   & .password-rules,
