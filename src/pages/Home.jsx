@@ -2,18 +2,18 @@ import "../styles/custom.scss";
 import "../styles/home.scss";
 import { Helmet } from "react-helmet-async";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../hooks/useAuth.js";
+// import { useAuth } from "../hooks/useAuth.js";
 import { Button } from "../components/ui/Button.jsx";
 import { Card } from "../components/ui/Card.jsx";
 import { purchaseProcessCardData } from "../assets/data/data.js";
 
 const Home = () => {
   const navigate = useNavigate();
-  const { user, isAuthenticated } = useAuth();
+  // const { user, isAuthenticated } = useAuth(); //! No se está usando!!!
   const navToProducts = () => navigate("/products");
 
-  console.log("useAuth: ", user);
-  console.log("useAuth: ", isAuthenticated);
+  // console.log("useAuth: ", user);
+  // console.log("useAuth: ", isAuthenticated);
   // const defaultResponse = () => console.warn("Falta crear la función onClick");
   return (
     <>
