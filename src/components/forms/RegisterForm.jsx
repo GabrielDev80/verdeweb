@@ -12,7 +12,7 @@ export const RegisterForm = ({ onSubmit }) => {
     username: "",
     email: "",
     password: "",
-    confirmPassword: "",
+    // confirmPassword: "",
   });
 
   const [touched, setTouched] = useState({

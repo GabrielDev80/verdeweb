@@ -1,44 +1,51 @@
 import LoginForm from "../components/forms/LoginForm.jsx";
 import { login as loginService } from "../services/auth.services.js";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
 import { useAuth } from "../hooks/useAuth.js";
 import { Helmet } from "react-helmet-async";
 
+import Swal from "sweetalert2";
+import "sweetalert2/themes/bulma.css";
 import "../styles/custom.scss";
 
 const Login = () => {
   const navigate = useNavigate();
   const { login: authLogin } = useAuth();
 
-  const [serverError, setServerError] = useState("");
-
   const handleLogin = async (formData) => {
     try {
       const response = await loginService(formData);
 
       if (response.status !== "success") {
-        console.warn("Login Response: ", response);
         return;
       }
 
-      // console.info("Login Response: ", response);
       authLogin(response.payload.user, response.payload.token);
 
-      //TODO: Agregar un Sweet Alert
-      alert(response.message);
-      // await Swal.fire({
-      //   icon: "success",
-      //   title: "Bienvenido",
-      //   text: `Hola ${response.payload.user.username}`,
-      //   timer: 1500,
-      //   showConfirmButton: false,
-      // });
+      await Swal.fire({
+        icon: "success",
+        title: response.message,
+        text: "Inicio de sesión exitoso",
+        timer: 3000,
+        showConfirmButton: false,
+        position: "top-end",
+      });
 
       navigate("/");
     } catch (error) {
-      console.error(error.response?.data);
-      setServerError(error.response?.data?.message);
+      await Swal.fire({
+        theme: "bulma",
+        icon: "error",
+        title: "Error al iniciar sesión",
+        text: error.response?.data?.message || "Ocurrió un error inesperado.",
+        width: "600px",
+        showConfirmButton: false,
+        showCancelButton: true,
+        cancelButtonText: "Cerrar",
+        cancelButtonColor: "#dc3545",
+        allowEscapeKey: false,
+        allowOutsideClick: false,
+      });
     }
   };
   return (
@@ -51,8 +58,6 @@ const Login = () => {
       <div className="container-lg">
         <p className="mb-3 info">Por favor, inicia sesión para continuar...</p>
         <LoginForm onSubmit={handleLogin} />
-        {/* {serverError && <p className="error">{serverError}</p>} */}
-        {serverError && alert(serverError)}
       </div>
     </>
   );
