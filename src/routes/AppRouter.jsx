@@ -8,13 +8,14 @@ import Faqs from "../pages/Faqs.jsx";
 import About from "../pages/About.jsx";
 import Contact from "../pages/Contact.jsx";
 import Account from "../pages/Account.jsx";
+import ProtectedRoute from "../components/ProtectedRoutes.jsx";
 
 export const AppRouter = () => {
   return (
     <BrowserRouter>
       <Routes>
-        {/* Rutas */}
         <Route element={<MainLayout />}>
+          {/* Rutas Públicas */}
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/faqs" element={<Faqs />} />
@@ -22,7 +23,16 @@ export const AppRouter = () => {
           <Route path="/contact" element={<Contact />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/account" element={<Account />} />
+
+          {/* Routas Protegidas */}
+          <Route
+            path="/account"
+            element={
+              <ProtectedRoute>
+                <Account />
+              </ProtectedRoute>
+            }
+          />
         </Route>
       </Routes>
     </BrowserRouter>
