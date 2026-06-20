@@ -63,6 +63,20 @@ select {
   font: inherit;
 }
 
+input[type="number"] {
+  padding-block: 0;
+  padding-inline: 0;
+}
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  appearance: textfield;
+}
+
 /* 4. Eliminar los saltos de línea forzados en párrafos largos */
 p,
 h1,

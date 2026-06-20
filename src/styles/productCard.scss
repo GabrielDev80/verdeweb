@@ -1,7 +1,6 @@
 @use "./variables" as *;
 @use "./custom.scss";
 .item {
-  height: 325px;
   background-color: #ffffff;
   border-radius: 20px;
   box-shadow: 0 0 10px 0 rgb(0 0 0 / 30%);
@@ -10,12 +9,15 @@
   margin: 25px 10px 20px 10px;
   padding: 10px;
   text-align: center;
-  width: 216px;
+  height: max-content;
+  width: fit-content;
+  // width: 216px;
 
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
   align-items: center;
+  justify-content: center;
   &:hover {
     background-color: $success-hover;
     box-shadow: 0 0 20px 0 rgb(0 0 0 / 80%);
@@ -26,5 +28,30 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+  }
+  & .quantity-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    & .qty {
+      border: 1px solid #228754;
+      border-radius: 99px;
+      text-align: center;
+      height: 55px;
+      width: 55px;
+      font-size: 0.75rem;
+      font-weight: bold;
+    }
+  }
+  & .qty-minus,
+  .qty-plus {
+    border: none;
+    background: transparent;
+    color: #228754;
+    font-size: 30px;
+    padding: 10px;
+    font-weight: 600;
   }
 }
