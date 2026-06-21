@@ -7,8 +7,9 @@ const CartProvider = ({ children }) => {
   const [cart, setCart] = useState(() => {
     try {
       const savedCart = localStorage.getItem(CART_STORAGE_KEY);
+      const parsedCart = savedCart ? JSON.parse(savedCart) : [];
 
-      return savedCart ? JSON.parse(savedCart) : [];
+      return Array.isArray(parsedCart) ? parsedCart : [];
     } catch (error) {
       console.error("Error al traer el carrito desde localStorage: ", error);
       return [];
@@ -24,11 +25,20 @@ const CartProvider = ({ children }) => {
   }, [cart]);
 
   const normalizeQuantity = (quantity, salesUnit) => {
-    if (salesUnit === "Kg") {
-      const parsed = Number(quantity);
-      if (Number.isNaN(parsed) || parsed < 1) return 1;
-      return Math.floor(parsed);
+    const parsed = Number(quantity);
+
+    if (Number.isNaN(parsed) || parsed <= 0) {
+      return salesUnit === "Kg" ? 0.25 : 1;
     }
+
+    if (salesUnit === "Kg") {
+      // redondear a múltiplos de 0.25
+      const normalized = Math.round(parsed / 0.25) * 0.25;
+      return Number(normalized.toFixed(2));
+    }
+
+    // productos por unidad
+    return Math.max(1, Math.round(parsed));
   };
 
   const buildCartItem = (product) => {
@@ -36,7 +46,7 @@ const CartProvider = ({ children }) => {
     const salesPrice = Number(product.sales_price) || 0;
 
     return {
-      productId: product.productId || product._id,
+      productId: product.productId || product._id || product.id,
       name: product.name,
       description: product.description,
       image: product.image,
@@ -51,12 +61,14 @@ const CartProvider = ({ children }) => {
     const itemToAdd = buildCartItem(product);
 
     setCart((prevCart) => {
-      const existingProduct = prevCart.find(
+      const safeCart = Array.isArray(prevCart) ? prevCart : [];
+
+      const existingProduct = safeCart.find(
         (item) => item.productId === itemToAdd.productId,
       );
 
       if (existingProduct) {
-        return prevCart.map((item) => {
+        return safeCart.map((item) => {
           if (item.productId !== itemToAdd.productId) return item;
 
           const newQuantity = normalizeQuantity(
@@ -76,15 +88,33 @@ const CartProvider = ({ children }) => {
     });
   };
 
-  const removeFromCart = (productId) => {
-    setCart((prevCart) =>
-      prevCart.filter((item) => item.productId !== productId),
-    );
+  const increaseQuantity = (productId) => {
+    setCart((prevCart) => {
+      const safeCart = Array.isArray(prevCart) ? prevCart : [];
+
+      return safeCart.map((item) => {
+        if (item.productId !== productId) return item;
+
+        const step = item.sales_unit === "Kg" ? 0.25 : 1;
+        const newQuantity = normalizeQuantity(
+          item.quantity + step,
+          item.sales_unit,
+        );
+
+        return {
+          ...item,
+          quantity: newQuantity,
+          subtotal: Number((newQuantity * item.sales_price).toFixed(2)),
+        };
+      });
+    });
   };
 
   const decreaseQuantity = (productId) => {
     setCart((prevCart) => {
-      prevCart
+      const safeCart = Array.isArray(prevCart) ? prevCart : [];
+
+      return safeCart
         .map((item) => {
           if (item.productId !== productId) return item;
 
@@ -104,18 +134,28 @@ const CartProvider = ({ children }) => {
     });
   };
 
+  const removeFromCart = (productId) => {
+    setCart((prevCart) => {
+      const safeCart = Array.isArray(prevCart) ? prevCart : [];
+
+      return safeCart.filter((item) => item.productId !== productId);
+    });
+  };
+
   const clearCart = () => {
     setCart([]);
   };
 
   const cartTotal = useMemo(() => {
+    const safeCart = Array.isArray(cart) ? cart : [];
     return Number(
-      cart.reduce((acc, item) => acc + item.subtotal, 0).toFixed(2),
+      safeCart.reduce((acc, item) => acc + item.subtotal, 0).toFixed(2),
     );
   }, [cart]);
 
   const cartCount = useMemo(() => {
-    return cart.reduce((acc, item) => acc + item.quantity, 0);
+    const safeCart = Array.isArray(cart) ? cart : [];
+    return safeCart.length;
   }, [cart]);
 
   return (
@@ -123,8 +163,9 @@ const CartProvider = ({ children }) => {
       value={{
         cart,
         addToCart,
-        removeFromCart,
+        increaseQuantity,
         decreaseQuantity,
+        removeFromCart,
         clearCart,
         cartTotal,
         cartCount,
