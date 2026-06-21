@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom";
 import { useCart } from "../hooks/useCart.js";
 import { Button } from "../components/ui/Button.jsx";
-
-// import "../styles/cart.scss";
 import {
   formatPrice,
   formatQuantityLabel,
 } from "../utils/products/products.utils.js";
+
+import "../styles/custom.scss";
+import "../styles/cart.scss";
 
 const Cart = () => {
   const {
@@ -60,11 +61,11 @@ const Cart = () => {
     <section className="container-lg">
       <div className="cart">
         <div className="cart-header">
-          <h1>Mi carrito</h1>
+          <h1 className="header-title">Mi carrito</h1>
 
           <Button
             type="button"
-            className="btn btn-clear-cart btn-pill"
+            className="btn btn-danger btn-pill"
             onClick={clearCart}
             text="Vaciar carrito"
           />
@@ -86,7 +87,7 @@ const Cart = () => {
                   <span className="unit">Por {item.sales_unit}</span>
                 </div>
 
-                <div className="controls-item">
+                <div className="quantity-wrapper">
                   <div className="item-qty-box">
                     <button
                       className="item-qty-btn"
@@ -96,9 +97,18 @@ const Cart = () => {
                     >
                       -
                     </button>
-                    <span className="item-qty">
-                      {formatQuantityLabel(item.quantity, item.sales_unit)}
-                    </span>
+
+                    <input
+                      className="item-qty"
+                      name="item-qty"
+                      type="text"
+                      value={formatQuantityLabel(
+                        item.quantity,
+                        item.sales_unit,
+                      )}
+                      readOnly
+                    />
+
                     <button
                       className="item-qty-btn"
                       type="button"
@@ -114,7 +124,7 @@ const Cart = () => {
                   <p className="unit-price">
                     Unitario: {formatPrice(item.sales_price)}
                   </p>
-                  <p className="unit-price">
+                  <p className="subtotal">
                     Subtotal: {formatPrice(item.subtotal)}
                   </p>
                   <Button
