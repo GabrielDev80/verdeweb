@@ -8,7 +8,8 @@ import Faqs from "../pages/Faqs.jsx";
 import About from "../pages/About.jsx";
 import Contact from "../pages/Contact.jsx";
 import Account from "../pages/Account.jsx";
-import ProtectedRoute from "../components/ProtectedRoutes.jsx";
+import ProtectedRoute from "../components/ProtectedRoute.jsx";
+import Cart from "../pages/Cart.jsx";
 
 export const AppRouter = () => {
   return (
@@ -30,6 +31,14 @@ export const AppRouter = () => {
             element={
               <ProtectedRoute>
                 <Account />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/cart"
+            element={
+              <ProtectedRoute>
+                <Cart />
               </ProtectedRoute>
             }
           />
