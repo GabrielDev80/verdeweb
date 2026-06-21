@@ -57,32 +57,34 @@ const ProductCard = ({ product }) => {
         <p>Por {product.sales_unit} </p>
       </div>
       <div className="quantity-wrapper">
-        <button
-          className="qty-minus"
-          onClick={handleMinusBtn}
-          type="button"
-          aria-label="Restar cantidad"
-        >
-          -
-        </button>
-        <input
-          className="qty"
-          id={`qty-${product.id}`}
-          name="qty"
-          type="text"
-          step={step}
-          min={step}
-          value={formatQuantityLabel(quantity, product.sales_unit)}
-          readOnly
-        />
-        <button
-          className="qty-plus"
-          onClick={handlePlusBtn}
-          type="button"
-          aria-label="Sumar cantidad"
-        >
-          +
-        </button>
+        <div className="item-qty-box">
+          <button
+            className="qty-minus"
+            onClick={handleMinusBtn}
+            type="button"
+            aria-label="Restar cantidad"
+          >
+            -
+          </button>
+          <input
+            className="qty"
+            id={`qty-${product.id}`}
+            name="qty"
+            type="text"
+            step={step}
+            min={step}
+            value={formatQuantityLabel(quantity, product.sales_unit)}
+            readOnly
+          />
+          <button
+            className="qty-plus"
+            onClick={handlePlusBtn}
+            type="button"
+            aria-label="Sumar cantidad"
+          >
+            +
+          </button>
+        </div>
       </div>
 
       {/* Call to Action */}
