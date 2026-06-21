@@ -1,24 +1,19 @@
 import { useState } from "react";
 import { Button } from "../ui/Button.jsx";
+import { useCart } from "../../hooks/useCart.js";
+import {
+  formatPrice,
+  formatQuantityLabel,
+} from "../../utils/products/products.utils.js";
 
 import "../../styles/productCard.scss";
 const ProductCard = ({ product }) => {
-  // console.log("Product: ", product);
+  const { addToCart } = useCart();
+
   const isKg = product.sales_unit === "Kg";
   const step = isKg ? 0.25 : 1;
 
   const [quantity, setQuantity] = useState(step);
-
-  const formatQuantityLabel = (qty, unit) => {
-    if (unit === "Kg") {
-      const formatted = Number.isInteger(qty)
-        ? qty.toString()
-        : qty.toFixed(2).replace(".", ",");
-
-      return `${formatted} Kg`;
-    }
-    return `${qty} un.`;
-  };
 
   const handleMinusBtn = () => {
     setQuantity((prev) => Math.max(step, prev - step));
@@ -29,7 +24,7 @@ const ProductCard = ({ product }) => {
   };
 
   const handleAddToCart = () => {
-    const cartItem = {
+    addToCart({
       productId: product.id,
       name: product.name,
       description: product.description,
@@ -37,22 +32,28 @@ const ProductCard = ({ product }) => {
       sales_price: product.sales_price,
       sales_unit: product.sales_unit,
       quantity,
-      subtotal: Number((quantity * product.sales_price).toFixed(2)),
-    };
-    console.log("Producto enviado al carrito: ", cartItem);
+    });
+
+    // console.log("Producto enviado al carrito: ", {
+    //   productId: product.id,
+    //   name: product.id,
+    //   quantity,
+    // });
+
+    // resetear cantidad al valor iinicial después de agregar
+    setQuantity(step);
   };
 
-  // console.log("Product: ", product);
   return (
-    <div className="item">
+    <article className="item">
       <div className="image-wrapper">
-        <img src={product.image} alt="imágen del producto" />
+        <img src={product.image} alt={product.name} />
       </div>
 
       <div className="text-primary ">
         <h2>{product.name}</h2>
         <h3>{product.description}</h3>
-        <h3>{`$ ${new Intl.NumberFormat("es-AR").format(product.sales_price)}`}</h3>
+        <h3>{formatPrice(product.sales_price)}</h3>
         <p>Por {product.sales_unit} </p>
       </div>
       <div className="quantity-wrapper">
@@ -90,7 +91,7 @@ const ProductCard = ({ product }) => {
         onClick={handleAddToCart}
         text="Añadir al carrito"
       />
-    </div>
+    </article>
   );
 };
 

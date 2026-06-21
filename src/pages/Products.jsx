@@ -11,7 +11,7 @@ const Products = () => {
   const [loading, setLoading] = useState(true);
   const auth = useAuth();
 
-  console.log(auth);
+  // console.log(auth);
   useEffect(() => {
     const fetchProducts = async () => {
       try {
