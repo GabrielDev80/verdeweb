@@ -2,6 +2,7 @@ import { useAuth } from "../../hooks/useAuth.js";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { CartIcon } from "../ui/CartIcon.jsx";
+import { useCart } from "../../hooks/useCart.js";
 
 import "../../styles/custom.scss";
 import "../../styles/navbar.scss";
@@ -11,7 +12,7 @@ export const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const closeMenu = () => setMenuOpen(false);
 
-  const cartCount = 10;
+  const { cartCount } = useCart();
   // const cartCount = cartItems.length;
 
   return (
