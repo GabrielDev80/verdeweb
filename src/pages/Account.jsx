@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { useAuth } from "../hooks/useAuth.js";
 import { Navigate, useNavigate } from "react-router-dom";
 import { Button } from "../components/ui/Button.jsx";
@@ -18,6 +19,9 @@ const Account = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Modo Huerta Online - Mi cuenta</title>
+      </Helmet>
       <div className="container-lg">
         <h1>Mi cuenta</h1>
 

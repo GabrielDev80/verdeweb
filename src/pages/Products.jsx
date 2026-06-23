@@ -33,7 +33,7 @@ const Products = () => {
   return (
     <>
       <Helmet>
-        <title>Verde Web Online - Productos</title>
+        <title>Modo Huerta Online - Productos</title>
       </Helmet>
       <div className="container-lg">
         <section>

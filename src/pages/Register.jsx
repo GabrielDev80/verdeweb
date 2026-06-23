@@ -46,7 +46,7 @@ const Register = () => {
   return (
     <>
       <Helmet>
-        <title>Verde Web Online - Registro</title>
+        <title>Modo Huerta Online - Registro</title>
       </Helmet>
       <div className="container-lg">
         <p className="info">Por favor, registrate para continuar...</p>

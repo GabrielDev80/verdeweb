@@ -18,7 +18,11 @@ const Home = () => {
   return (
     <>
       <Helmet>
-        <title>Verde Web Online - Inicio</title>
+        <title>Modo Huerta Online - Inicio</title>
+        <meta
+          name="description"
+          content="Esta es la página de inicio del sitio web de Modo Huerta Online. Aquí podés encontrar la descripción del proceso de compra a través de nuestra plataforma, las novedades, promociones, y toda la información necesaria para tu mejor experiencia de compra."
+        />
       </Helmet>
       {/* main-view-container */}
       <section className="container-lg main-view-container">

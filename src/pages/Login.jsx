@@ -52,7 +52,7 @@ const Login = () => {
     <>
       {/* Head */}
       <Helmet>
-        <title>Verde Web Online - Ingresar</title>
+        <title>Modo Huerta Online - Ingresar</title>
       </Helmet>
       {/* Body */}
       <div className="container-lg">

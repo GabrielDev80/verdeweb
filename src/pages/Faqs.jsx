@@ -6,8 +6,11 @@ const Faqs = () => {
   return (
     <>
       <Helmet>
-        {" "}
-        <title>Verde Web Online - Preguntas Frecuentes</title>
+        <title>Modo Huerta Online - Preguntas Frecuentes</title>
+        <meta
+          name="description"
+          content="Esta página contiene preguntas frecuentes con sus respectivas respuestas."
+        />
       </Helmet>
       <div className="container-md">
         <h1 className="">Preguntas Frecuentes</h1>

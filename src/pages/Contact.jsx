@@ -4,7 +4,7 @@ const Contact = () => {
   return (
     <>
       <Helmet>
-        <title>Verde Web Online - Contacto</title>
+        <title>Modo Huerta Online - Contacto</title>
       </Helmet>
       <div>Llamáme chabón!!!</div>
     </>

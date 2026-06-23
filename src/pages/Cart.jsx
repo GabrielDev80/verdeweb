@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { useCart } from "../hooks/useCart.js";
 import { Button } from "../components/ui/Button.jsx";
@@ -42,18 +43,27 @@ const Cart = () => {
 
   if (!cart.length) {
     return (
-      <section className="container-lg">
-        <div className="cart empty-cart">
-          <h1> Tu carrito está vacío</h1>
-          <p>
-            agrega frutas, verduras y otros productos para comenzar tu pedido.
-          </p>
+      <>
+        <Helmet>
+          <title>Modo Huerta Online - Carrito</title>
+        </Helmet>
 
-          <Link to="/products">
-            <Button className="btn btn-success btn-pill" text="Ver productos" />
-          </Link>
-        </div>
-      </section>
+        <section className="container-lg">
+          <div className="cart empty-cart">
+            <h1> Tu carrito está vacío</h1>
+            <p>
+              agrega frutas, verduras y otros productos para comenzar tu pedido.
+            </p>
+
+            <Link to="/products">
+              <Button
+                className="btn btn-success btn-pill"
+                text="Ver productos"
+              />
+            </Link>
+          </div>
+        </section>
+      </>
     );
   }
 
