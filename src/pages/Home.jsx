@@ -29,7 +29,7 @@ const Home = () => {
         <div className="text-wrapper">
           <div className="tw-container text-on-dark">
             <h3 className="main-view-title font-primary medium upper shadow-4">
-              VerdeWeb - Tu Verduleria Online
+              Modo Huerta - Tu Verduleria Online
             </h3>
             <h1 className="main-view-slogan font-primary extra-bold shadow-4">
               La forma más simple de comprar frutas y verduras
@@ -53,13 +53,24 @@ const Home = () => {
       {/* purchase-process-wrapper */}
       <section className="container-lg purchase-process-wrapper py-3">
         <h2 className="font-primary extra-bold text-center pb-2">
-          Mirá que fácil es comprar en Verduleria Online
+          Mirá que fácil es comprar en Modo Huerta Online
         </h2>
         <div className="purchase-cards-wrapper centred p-1">
           {purchaseProcessCardData.map((data, dataIdx) => (
             <Card className="card-group" key={dataIdx} data={data} />
           ))}
         </div>
+      </section>
+      <section className="container-lg delivery-wrapper py-3">
+        <h2 className="font-primary extra-bold text-center pb-2">
+          Envíos a domicilio
+        </h2>
+        <p className="px-3">
+          <strong>Atención: </strong>Antes de realizar un{" "}
+          <span>pedido a domicilio</span> consultanos si tenemos reparto en tu
+          zona. En caso de no contar con reparto en tu zona igualmete pedés
+          acercarte a nuestro domicilio a retirar tu pedido.
+        </p>
       </section>
     </>
   );
