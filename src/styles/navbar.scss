@@ -3,42 +3,57 @@
 
 .navbar {
   background: $gradient-success;
+  position: relative;
 
   display: flex;
-  flex-direction: row;
   align-items: center;
   justify-content: space-between;
 
-  padding: 1rem 2rem;
-  position: relative;
-  @include tablet {
-    padding: 0 2rem;
-  }
-  @include mobile {
-    padding: 0 1rem;
-  }
-  & .navbarBrand {
-    min-height: 83px;
-    padding: 10px;
-    width: 20%;
+  min-height: clamp(72px, 6vw, 96px);
+  padding-inline: clamp(1rem, 2vw, 2rem);
+  padding-block: clamp(0.4rem, 0.8vw, 0.8rem);
 
+  @include mobile {
+    min-height: 72px;
+    padding-inline: 1rem;
+    padding-block: 0.4rem;
+  }
+
+  /* ==================== Brand ==================== */
+  & .navbarBrand {
+    flex: 0 0 auto;
     display: flex;
-    justify-content: center;
     align-items: center;
-    @include mobile {
-      width: 75%;
-    }
     z-index: 1001;
-    & .brand-image {
-      // height: 60px;
-      // width: auto;
+
+    width: clamp(180px, 16vw, 280px);
+
+    @include tablet {
+      width: clamp(160px, 22vw, 220px);
+    }
+
+    @include mobile {
+      width: clamp(150px, 48vw, 220px);
+      max-width: calc(100% - 56px);
+    }
+
+    & a {
+      display: flex;
+      align-items: center;
       width: 100%;
     }
+
+    & .brand-image {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
   }
 
+  /* ================= Hamburguesa ================= */
   & .hamburger {
     display: none;
-
     flex-direction: column;
     justify-content: space-between;
 
@@ -48,9 +63,11 @@
     background: none;
     border: none;
     cursor: pointer;
+    color: $text-on-dark;
 
     @include mobile {
       display: flex;
+      flex: 0 0 auto;
       z-index: 1001;
     }
 
@@ -58,31 +75,40 @@
       display: block;
       width: 100%;
       height: 3px;
+      border-radius: 999px;
       background: currentColor;
-      transition: 0.3s;
+      transition: 0.3s ease;
     }
 
     &.open {
       & span:nth-child(1) {
         transform: translateY(9px) rotate(45deg);
       }
+
       & span:nth-child(2) {
         opacity: 0;
       }
+
       & span:nth-child(3) {
         transform: translateY(-9px) rotate(-45deg);
       }
     }
   }
 
+  /* ==================== Menú ==================== */
   & .navbarList {
     display: flex;
     align-items: center;
-    gap: 1.5rem;
+    justify-content: flex-end;
+    flex-wrap: nowrap;
 
     list-style: none;
     margin: 0;
     padding: 0;
+
+    /* gap fluido */
+    gap: clamp(0.35rem, 1vw, 1.25rem);
+
     @include mobile {
       position: absolute;
       top: 100%;
@@ -91,43 +117,64 @@
 
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
+      align-items: stretch;
+      gap: 0.15rem;
 
       background: $gradient-success;
-      padding: 1rem;
+      padding: 0.85rem 1rem 1rem;
       z-index: 9999;
 
       opacity: 0;
       visibility: hidden;
+      transform: translateY(-8px);
       transition:
-        opacity 0.3s ease,
-        visibility 0.3s ease;
+        opacity 0.25s ease,
+        visibility 0.25s ease,
+        transform 0.25s ease;
 
       &.active {
         opacity: 1;
         visibility: visible;
+        transform: translateY(0);
       }
     }
 
     & .navbarItem {
-      font-size: 15px;
-      line-height: 18px;
-      padding: 10px;
       margin: 0;
+      padding: 0;
+
+      display: flex;
+      align-items: center;
+
+      /* Acá vive el tamaño real del texto del nav */
+      font-size: clamp(0.82rem, 0.3vw + 0.72rem, 1rem);
+      line-height: 1.2;
+
       @include tablet {
-        font-size: 10px;
-        padding: 3px;
+        font-size: clamp(0.78rem, 0.2vw + 0.72rem, 0.92rem);
       }
+
       @include mobile {
-        font-size: 12px;
-        line-height: 0px;
-        padding: 5px;
+        width: 100%;
+        font-size: 1rem;
       }
+
       & .navbarLink {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.35rem;
+
         text-decoration: none;
         color: $text-on-dark;
+        white-space: nowrap;
 
-        transition: 0.2s ease;
+        padding: clamp(0.35rem, 0.55vw, 0.55rem) clamp(0.3rem, 0.8vw, 0.6rem);
+
+        transition:
+          color 0.2s ease,
+          opacity 0.2s ease;
 
         &:hover {
           color: $brand-accent-dark;
@@ -137,42 +184,97 @@
           border-bottom: 2px solid currentColor;
         }
 
+        @include mobile {
+          width: 100%;
+          justify-content: flex-start;
+          padding: 0.85rem 0.25rem;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+
+          &.active {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+          }
+
+          &::after {
+            content: "";
+            position: absolute;
+            left: 0.25rem;
+            right: 0.25rem;
+            bottom: 0;
+            height: 2px;
+            background: transparent;
+          }
+
+          &.active::after {
+            background: currentColor;
+          }
+        }
+
+        /* ============== Carrito ============== */
         &.cartLink {
           position: relative;
-          display: flex;
+          display: inline-flex;
           align-items: center;
-          & .cartIcon {
-            width: 32px;
-            height: 32px;
-            color: $text-on-dark;
+          justify-content: center;
+
+          @include mobile {
+            justify-content: flex-start;
           }
+
+          & .cartIcon {
+            width: clamp(24px, 1.7vw, 30px);
+            height: clamp(24px, 1.7vw, 30px);
+            min-width: 24px;
+            min-height: 24px;
+            flex-shrink: 0;
+            color: $text-on-dark;
+
+            @include mobile {
+              width: 28px;
+              height: 28px;
+            }
+          }
+
           & .cartBadge {
             position: absolute;
-            top: -6px;
-            right: -12px;
+            top: -4px;
+            right: -10px;
 
-            min-width: 20px;
-            height: 20px;
-            padding: 5px 0;
+            min-width: 18px;
+            height: 18px;
+            padding-inline: 0.28rem;
+
             display: flex;
             justify-content: center;
             align-items: center;
 
+            border-radius: 999px;
             border: 1px solid $brand-accent;
-            border-radius: 50%;
-
-            font-size: 12px;
-            font-weight: 700;
-
             background: $brand-accent;
             color: $text-on-dark;
+
+            font-size: 0.68rem;
+            font-weight: 700;
+            line-height: 1;
+
+            @include mobile {
+              top: 6px;
+              left: 18px;
+              right: auto;
+            }
           }
         }
 
+        /* ============== Login pill ============== */
         &.loginButton {
-          padding: 0.6rem 1rem;
+          padding: clamp(0.45rem, 0.7vw, 0.65rem) clamp(0.9rem, 1.2vw, 1.15rem);
           border-radius: 999px;
           border: 1px solid currentColor;
+
+          @include mobile {
+            width: fit-content;
+            margin-top: 0.35rem;
+            padding: 0.75rem 1rem;
+          }
         }
       }
     }

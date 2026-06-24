@@ -23,8 +23,8 @@ export const Navbar = () => {
           <NavLink to="/" onClick={closeMenu}>
             <img
               className="brand-image"
-              src="/logo.svg"
-              alt="Logo de Verde Web"
+              src="logo/logo.svg"
+              alt="Logo de Modo Huerta"
             />
           </NavLink>
         </div>
