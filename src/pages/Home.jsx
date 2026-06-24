@@ -24,9 +24,12 @@ const Home = () => {
       {/* HERO */}
       <section className="container-lg main-view-container">
         <picture className="hero-media" aria-hidden="true">
-          {/* <source media="(max-width: 768px)" srcSet="/bg-verduras-mobile.webp" /> */}
+          <source
+            media="(max-width: 768px)"
+            srcSet="images/bg-verduras-mobile.webp"
+          />
           <img
-            src="images/bg-verduras.webp"
+            src="images/bg-verduras-desktop.webp"
             alt="Frutas y verduras frescas"
             className="hero-image"
             fetchPriority="high"
