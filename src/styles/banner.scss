@@ -8,8 +8,19 @@
   align-items: center;
   position: relative;
   min-height: 2.5rem;
-  width: 100%;
-  & .legend {
-    font-size: 14px;
-  }
+  overflow: hidden;
+}
+
+.legend {
+  margin: 0;
+  transition: opacity 0.5s ease-in-out;
+  opacity: 1;
+}
+
+.legend.show {
+  opacity: 1;
+}
+
+.legend.hide {
+  opacity: 0;
 }
