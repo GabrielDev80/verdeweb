@@ -1,26 +1,45 @@
 @use "./variables" as *;
 
 .banner {
-  background: $gradient-accent;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
   position: relative;
+  width: 100%;
   min-height: 2.5rem;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  padding-inline: 0.75rem;
+  background: $gradient-accent;
+
+  @include tablet {
+    min-height: 2.75rem;
+    padding-inline: 1rem;
+  }
+
+  @include desktop {
+    min-height: 3rem;
+    padding-inline: 1.25rem;
+  }
 }
 
 .legend {
+  position: absolute;
+  left: 0;
   margin: 0;
-  transition: opacity 0.5s ease-in-out;
-  opacity: 1;
+  white-space: nowrap;
+  line-height: 1.15;
+  will-change: transform;
+  animation-name: banner-marquee;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+  font-size: clamp(0.78rem, 0.72rem + 0.25vw, 0.95rem);
 }
 
-.legend.show {
-  opacity: 1;
-}
+@keyframes banner-marquee {
+  from {
+    transform: translateX(var(--banner-start));
+  }
 
-.legend.hide {
-  opacity: 0;
+  to {
+    transform: translateX(calc(var(--banner-distance) * -1));
+  }
 }
