@@ -19,7 +19,7 @@
   align-items: center;
   justify-content: center;
   &:hover {
-    background-color: $success-hover;
+    // background-color: $success-hover;
     box-shadow: 0 0 20px 0 rgb(0 0 0 / 80%);
   }
   & .image-wrapper {
@@ -44,14 +44,15 @@
       font-size: 0.75rem;
       font-weight: bold;
     }
-  }
-  & .qty-minus,
-  .qty-plus {
-    border: none;
-    background: transparent;
-    color: #228754;
-    font-size: 30px;
-    padding: 10px;
-    font-weight: 600;
+    & .qty-minus,
+    .qty-plus {
+      height: auto;
+      border: none;
+      background: transparent;
+      color: #228754;
+      font-size: 30px;
+      padding: 10px;
+      font-weight: 600;
+    }
   }
 }

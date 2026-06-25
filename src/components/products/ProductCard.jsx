@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button } from "../ui/Button.jsx";
 import { useCart } from "../../hooks/useCart.js";
+import { showSuccess } from "../../utils/notifications/toast.js";
 import {
   formatPrice,
   formatQuantityLabel,
@@ -34,11 +35,9 @@ const ProductCard = ({ product }) => {
       quantity,
     });
 
-    // console.log("Producto enviado al carrito: ", {
-    //   productId: product.id,
-    //   name: product.id,
-    //   quantity,
-    // });
+    showSuccess(
+      `${quantity} ${product.sales_unit} de ${product.name} ${product.description} añadido al carrito`,
+    );
 
     // resetear cantidad al valor iinicial después de agregar
     setQuantity(step);
