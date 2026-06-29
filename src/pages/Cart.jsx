@@ -17,7 +17,8 @@ const Cart = () => {
     increaseQuantity,
     decreaseQuantity,
     removeFromCart,
-    clearCart,
+    emptyCart,
+    loading,
   } = useCart();
 
   const handleWhatsAppOrder = () => {
@@ -41,13 +42,18 @@ const Cart = () => {
     window.open(url, "_blank");
   };
 
-  if (!cart.length) {
-    return (
-      <>
-        <Helmet>
-          <title>Modo Huerta Online - Carrito</title>
-        </Helmet>
-
+  return (
+    <>
+      <Helmet>
+        <title>Modo Huerta Online - Carrito</title>
+      </Helmet>
+      {loading ? (
+        <section className="container-lg">
+          <div className="cart empty-cart">
+            <h1>Cargando carrito...</h1>
+          </div>
+        </section>
+      ) : !cart.length ? (
         <section className="container-lg">
           <div className="cart empty-cart">
             <h1> Tu carrito está vacío</h1>
@@ -63,110 +69,108 @@ const Cart = () => {
             </Link>
           </div>
         </section>
-      </>
-    );
-  }
+      ) : (
+        <section className="container-lg">
+          <div className="cart">
+            <div className="cart-header">
+              <h1 className="header-title">Mi carrito</h1>
 
-  return (
-    <section className="container-lg">
-      <div className="cart">
-        <div className="cart-header">
-          <h1 className="header-title">Mi carrito</h1>
-
-          <Button
-            type="button"
-            className="btn btn-danger btn-pill"
-            onClick={clearCart}
-            text="Vaciar carrito"
-          />
-        </div>
-
-        <div className="cart-layout">
-          <div className="cart-items">
-            {cart.map((item) => (
-              <article className="cart-item" key={item.productId}>
-                <div className="image-wrapper">
-                  <img src={item.image} alt={item.name} className="image" />
-                </div>
-
-                <div className="info-item">
-                  <h2 className="item-name">{item.name}</h2>
-                  {item.description && (
-                    <p className="item-description">{item.description}</p>
-                  )}
-                  <span className="unit">Por {item.sales_unit}</span>
-                </div>
-
-                <div className="quantity-wrapper">
-                  <div className="item-qty-box">
-                    <button
-                      className="item-qty-btn"
-                      type="button"
-                      onClick={() => decreaseQuantity(item.productId)}
-                      aria-label={`Restar cantidad de ${item.name}`}
-                    >
-                      -
-                    </button>
-
-                    <input
-                      className="item-qty"
-                      name="item-qty"
-                      type="text"
-                      value={formatQuantityLabel(
-                        item.quantity,
-                        item.sales_unit,
-                      )}
-                      readOnly
-                    />
-
-                    <button
-                      className="item-qty-btn"
-                      type="button"
-                      onClick={() => increaseQuantity(item.productId)}
-                      aria-label={`Sumar cantidad de ${item.name}`}
-                    >
-                      +
-                    </button>
-                  </div>
-                </div>
-
-                <div className="prices-item">
-                  <p className="unit-price">
-                    Unitario: {formatPrice(item.sales_price)}
-                  </p>
-                  <p className="subtotal">
-                    Subtotal: {formatPrice(item.subtotal)}
-                  </p>
-                  <Button
-                    className="btn btn-danger btn-pill"
-                    type="button"
-                    onClick={() => removeFromCart(item.productId)}
-                    text="Eliminar"
-                  />
-                </div>
-              </article>
-            ))}
-          </div>
-          <aside className="cart-summary">
-            <h2>Resumen del pedido</h2>
-            <div className="summary-row">
-              <span>Total</span>
-              <strong>{formatPrice(cartTotal)}</strong>
+              <Button
+                type="button"
+                className="btn btn-danger btn-pill"
+                onClick={emptyCart}
+                text="Vaciar carrito"
+              />
             </div>
 
-            <Button
-              className="btn btn-success btn-pill upper"
-              onClick={handleWhatsAppOrder}
-              text="Finalizar pedido por WhatsApp"
-            />
+            <div className="cart-layout">
+              <div className="cart-items">
+                {cart.map((item) => (
+                  <article className="cart-item" key={item.productId}>
+                    <div className="image-wrapper">
+                      <img src={item.image} alt={item.name} className="image" />
+                    </div>
 
-            <Link to="/products" className="continue-shopping">
-              Seguir comprando
-            </Link>
-          </aside>
-        </div>
-      </div>
-    </section>
+                    <div className="info-item">
+                      <h2 className="item-name">{item.name}</h2>
+                      {item.description && (
+                        <p className="item-description">{item.description}</p>
+                      )}
+                      <span className="unit">Por {item.sales_unit}</span>
+                    </div>
+
+                    <div className="quantity-wrapper">
+                      <div className="item-qty-box">
+                        <button
+                          className="item-qty-btn"
+                          type="button"
+                          onClick={() => decreaseQuantity(item.productId)}
+                          aria-label={`Restar cantidad de ${item.name}`}
+                        >
+                          -
+                        </button>
+
+                        <input
+                          className="item-qty"
+                          name="item-qty"
+                          type="text"
+                          value={formatQuantityLabel(
+                            item.quantity,
+                            item.sales_unit,
+                          )}
+                          readOnly
+                        />
+
+                        <button
+                          className="item-qty-btn"
+                          type="button"
+                          onClick={() => increaseQuantity(item.productId)}
+                          aria-label={`Sumar cantidad de ${item.name}`}
+                        >
+                          +
+                        </button>
+                      </div>
+                    </div>
+
+                    <div className="prices-item">
+                      <p className="unit-price">
+                        Unitario: {formatPrice(item.sales_price)}
+                      </p>
+                      <p className="subtotal">
+                        Subtotal: {formatPrice(item.subtotal)}
+                      </p>
+                      <Button
+                        className="btn btn-danger btn-pill"
+                        type="button"
+                        onClick={() => removeFromCart(item.productId)}
+                        text="Eliminar"
+                      />
+                    </div>
+                  </article>
+                ))}
+              </div>
+              <aside className="cart-summary">
+                <h2>Resumen del pedido</h2>
+                <div className="summary-row">
+                  <span>Total</span>
+                  <strong>{formatPrice(cartTotal)}</strong>
+                </div>
+
+                <Button
+                  className="btn btn-success btn-pill upper"
+                  onClick={handleWhatsAppOrder}
+                  text="Finalizar pedido por WhatsApp"
+                />
+
+                <Link to="/products" className="continue-shopping">
+                  Seguir comprando
+                </Link>
+              </aside>
+            </div>
+          </div>
+        </section>
+      )}
+    </>
   );
 };
 export default Cart;
