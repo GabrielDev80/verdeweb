@@ -25,21 +25,13 @@ const ProductCard = ({ product }) => {
   };
 
   const handleAddToCart = () => {
-    addToCart({
-      productId: product.id,
-      name: product.name,
-      description: product.description,
-      image: product.image,
-      sales_price: product.sales_price,
-      sales_unit: product.sales_unit,
-      quantity,
-    });
+    addToCart(product, quantity);
 
     showSuccess(
       `${quantity} ${product.sales_unit} de ${product.name} ${product.description} añadido al carrito`,
     );
 
-    // resetear cantidad al valor iinicial después de agregar
+    // resetear cantidad al valor inicial después de agregar
     setQuantity(step);
   };
 
