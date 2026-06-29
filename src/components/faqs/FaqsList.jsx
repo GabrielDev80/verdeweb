@@ -24,7 +24,7 @@ const faqs = [
 ];
 const FaqsList = () => {
   return (
-    <div className="faqcard-wrapper">
+    <div className="faqscard-wrapper">
       {faqs.map((faq, faqIdx) => (
         <div key={faqIdx}>
           <FaqsCard faq={faq} />

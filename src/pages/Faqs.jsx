@@ -12,8 +12,8 @@ const Faqs = () => {
           content="Esta página contiene preguntas frecuentes con sus respectivas respuestas."
         />
       </Helmet>
-      <div className="container-md">
-        <h1 className="">Preguntas Frecuentes</h1>
+      <div className="container-lg faqs">
+        <h1 className="faqs-title">Preguntas Frecuentes</h1>
         <FaqsList />
       </div>
     </>
