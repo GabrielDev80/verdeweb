@@ -5,10 +5,12 @@ import "../../styles/banner.scss";
 
 const legends = [
   "Arrancamos en Julio",
-  "Tomamos pedidos hasta el 03/jul a las 20hs.",
+  "Hacé tu compra semanal",
   "Compra mínima $ 10.000.-",
+  "Tomamos pedidos hasta el viernes a las 20hs.",
+  "Los pedidos se entregan a partir del día sábado.",
   "Estamos ubicados en José León Suarez",
-  "Envíos a domicilio sin cargo dentro de los 5 km",
+  // "Envíos a domicilio sin cargo dentro de los 5 km",
 ];
 
 const SPEED = 35;
