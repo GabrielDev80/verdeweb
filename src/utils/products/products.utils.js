@@ -19,8 +19,6 @@ export const formatQuantityLabel = (qty, unit) => {
 
 export const normalizeQuantity = (quantity, salesUnit) => {
   const parsed = Number(quantity);
-  console.log("salesUnit:", salesUnit);
-  console.log("parsed:", parsed);
 
   if (Number.isNaN(parsed)) {
     return salesUnit === "Kg" ? 0.25 : 1;
