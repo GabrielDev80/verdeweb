@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet-async";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useCart } from "../hooks/useCart.js";
 import { Button } from "../components/ui/Button.jsx";
 import {
@@ -20,6 +20,8 @@ const Cart = () => {
     emptyCart,
     loading,
   } = useCart();
+
+  const navigate = useNavigate();
 
   const handleWhatsAppOrder = () => {
     if (!cart.length) return;
@@ -156,6 +158,12 @@ const Cart = () => {
                   <strong>{formatPrice(cartTotal)}</strong>
                 </div>
 
+                <Button
+                  className="btn btn-warning btn-pill upper"
+                  onClick={() => navigate("/cart/checkout")}
+                  text="Finalizar compra"
+                  type="button"
+                />
                 <Button
                   className="btn btn-success btn-pill upper"
                   onClick={handleWhatsAppOrder}

@@ -15,7 +15,7 @@ const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  async function loadCart() {
+  const loadCart = async () => {
     try {
       setLoading(true);
 
@@ -27,11 +27,13 @@ const CartProvider = ({ children }) => {
     } finally {
       setLoading(false);
     }
-  }
+  };
 
   useEffect(() => {
     if (isAuthenticated) {
       loadCart();
+    } else {
+      setCart([]);
     }
   }, [isAuthenticated]);
 
@@ -51,57 +53,67 @@ const CartProvider = ({ children }) => {
   };
 
   const increaseQuantity = async (productId) => {
-    const item = cart.find((prod) => prod.productId === productId);
+    try {
+      const item = cart.find((prod) => prod.productId === productId);
 
-    if (!item) return;
+      if (!item) return;
 
-    const step = item.sales_unit === "Kg" ? 0.25 : 1;
+      const step = item.sales_unit === "Kg" ? 0.25 : 1;
 
-    const raw = item.quantity + step;
-    const quantity = normalizeQuantity(raw, item.sales_unit);
+      const quantity = normalizeQuantity(item.quantity + step, item.sales_unit);
 
-    const data = await updateProductQuantity(productId, quantity);
+      const data = await updateProductQuantity(productId, quantity);
 
-    console.log("TO BACKEND:", quantity);
-    console.log("FROM BACKEND:", data.products);
-
-    setCart(data.products);
+      setCart(data.products);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const decreaseQuantity = async (productId) => {
-    const item = cart.find((prod) => prod.productId === productId);
+    try {
+      const item = cart.find((prod) => prod.productId === productId);
 
-    if (!item) return;
+      if (!item) return;
 
-    const step = item.sales_unit === "Kg" ? 0.25 : 1;
+      const step = item.sales_unit === "Kg" ? 0.25 : 1;
 
-    const raw = item.quantity - step;
+      const newQuantity = item.quantity - step;
 
-    if (raw <= 0) {
-      const data = await removeProduct(productId);
+      if (newQuantity <= 0) {
+        const data = await removeProduct(productId);
+        setCart(data.products);
+        return;
+      }
+
+      const quantity = normalizeQuantity(newQuantity, item.sales_unit);
+
+      const data = await updateProductQuantity(productId, quantity);
+
       setCart(data.products);
-      return;
+    } catch (error) {
+      console.error(error);
     }
-
-    const quantity = normalizeQuantity(raw, item.sales_unit);
-
-    const data = await updateProductQuantity(productId, quantity);
-
-    console.log("TO BACKEND:", quantity);
-    console.log("FROM BACKEND:", data.products);
-
-    setCart(data.products);
   };
 
   const removeFromCart = async (productId) => {
-    const data = await removeProduct(productId);
-    setCart(data.products);
+    try {
+      const data = await removeProduct(productId);
+
+      setCart(data.products);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const emptyCart = async () => {
-    await clearCart();
+    try {
+      await clearCart();
 
-    setCart([]);
+      setCart([]);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const cartTotal = useMemo(() => {
@@ -111,12 +123,7 @@ const CartProvider = ({ children }) => {
     );
   }, [cart]);
 
-  const cartCount = useMemo(
-    () =>
-      // const safeCart = Array.isArray(cart) ? cart : [];
-      cart.length,
-    [cart],
-  );
+  const cartCount = useMemo(() => cart.length, [cart]);
 
   return (
     <CartContext.Provider
