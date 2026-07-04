@@ -11,7 +11,7 @@ import "../../styles/productCard.scss";
 const ProductCard = ({ product }) => {
   const { addToCart } = useCart();
 
-  const isKg = product.sales_unit === "Kg";
+  const isKg = product.sales_unit === "kg";
   const step = isKg ? 0.25 : 1;
 
   const [quantity, setQuantity] = useState(step);

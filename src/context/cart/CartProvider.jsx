@@ -58,7 +58,7 @@ const CartProvider = ({ children }) => {
 
       if (!item) return;
 
-      const step = item.sales_unit === "Kg" ? 0.25 : 1;
+      const step = item.sales_unit === "kg" ? 0.25 : 1;
 
       const quantity = normalizeQuantity(item.quantity + step, item.sales_unit);
 
@@ -76,7 +76,7 @@ const CartProvider = ({ children }) => {
 
       if (!item) return;
 
-      const step = item.sales_unit === "Kg" ? 0.25 : 1;
+      const step = item.sales_unit === "kg" ? 0.25 : 1;
 
       const newQuantity = item.quantity - step;
 

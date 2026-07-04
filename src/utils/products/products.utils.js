@@ -7,7 +7,7 @@ export const formatPrice = (price) => {
 };
 
 export const formatQuantityLabel = (qty, unit) => {
-  if (unit === "Kg") {
+  if (unit === "kg") {
     const formatted = Number.isInteger(qty)
       ? qty.toString()
       : qty.toFixed(2).replace(".", ",");
@@ -21,10 +21,10 @@ export const normalizeQuantity = (quantity, salesUnit) => {
   const parsed = Number(quantity);
 
   if (Number.isNaN(parsed)) {
-    return salesUnit === "Kg" ? 0.25 : 1;
+    return salesUnit === "kg" ? 0.25 : 1;
   }
 
-  if (salesUnit === "Kg") {
+  if (salesUnit === "kg") {
     // redondear a múltiplos de 0.25
     const step = 0.25;
     const normalized = Math.round(parsed / step) * step;
