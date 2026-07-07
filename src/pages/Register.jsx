@@ -13,9 +13,6 @@ const Register = () => {
     try {
       const response = await register(formData);
 
-      console.info("Register Response: ", response.message);
-      console.info("Register Response: ", response);
-
       await Swal.fire({
         theme: "bulma",
         icon: "success",
