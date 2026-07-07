@@ -11,7 +11,7 @@ import { useAuth } from "../../hooks/useAuth.js";
 import { normalizeQuantity } from "../../utils/products/products.utils.js";
 
 const CartProvider = ({ children }) => {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, user } = useAuth();
   const [cart, setCart] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -30,12 +30,12 @@ const CartProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    if (isAuthenticated) {
+    if (isAuthenticated && user?.role === "customer") {
       loadCart();
     } else {
       setCart([]);
     }
-  }, [isAuthenticated]);
+  }, [isAuthenticated, user]);
 
   const addToCart = async (product, quantity) => {
     try {
